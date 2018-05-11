@@ -53,6 +53,7 @@ def test_softmax(input_class):
         traceback.print_exc()
 
 def test_linear(input_class, act):
+    print("begin")
     try:
         act_func = act()
         func = input_class(5, 10, act)
@@ -81,7 +82,13 @@ def test_linear(input_class, act):
         diff_dw = np.linalg.norm(func.dW - dW_ans)
         diff_db = np.linalg.norm(func.db - db_ans)
 
-        assert diff < 1e-10 and diff_back < 1e-10 and diff_dw < 1e-10 and diff_db < 1e-10
+        assert diff < 1e-10
+        print("z ok")
+        assert diff_back < 1e-10
+        print("back ok")
+        assert diff_dw < 1e-10
+        print("dw ok")
+        assert diff_db < 1e-10
         print("ok!")
     except Exception as e:
         print("something wrong")
